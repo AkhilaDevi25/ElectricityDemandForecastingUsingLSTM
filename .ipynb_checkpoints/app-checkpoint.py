@@ -8,7 +8,7 @@ from tensorflow.keras.models import load_model
 
 import pandas as pd
 
-# df = pd.read_csv("/home/rgukt/Desktop/Electricity-Demand-Forecasting-Dashboard/PJME_hourly.csv")
+# df = pd.read_csv("data/PJME_hourly.csv")
 
 # df['Datetime'] = pd.to_datetime(df['Datetime'])
 
@@ -29,7 +29,7 @@ st.set_page_config(
 
 @st.cache_data
 def load_data():
-    df = pd.read_csv("/home/rgukt/Desktop/Electricity-Demand-Forecasting-Dashboard/PJME_hourly.csv")
+    df = pd.read_csv("data/PJME_hourly.csv")
     df['Datetime'] = pd.to_datetime(df['Datetime'])
     df = df.sort_values("Datetime")
     df.rename(columns={'PJME_MW':'demand'}, inplace=True)
@@ -46,9 +46,9 @@ df = load_data()
 # Load Model and Scaler
 # ---------------------------
 
-model = load_model("/home/rgukt/Desktop/Electricity-Demand-Forecasting-Dashboard/models/electricity_lstm_model.h5")
+model = load_model("models/electricity_lstm_model.h5")
 
-scaler = pickle.load(open("/home/rgukt/Desktop/Electricity-Demand-Forecasting-Dashboard/models/scaler.pkl","rb"))
+scaler = pickle.load(open("models/scaler.pkl","rb"))
 
 
 # ---------------------------
